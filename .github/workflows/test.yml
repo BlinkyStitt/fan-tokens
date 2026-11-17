@@ -39,6 +39,7 @@ jobs:
         id: build
 
       - name: Run Forge tests
-        run: |
-          forge test -vvv
+        env:
+          BASE_RPC_URL: ${{ vars.BASE_RPC_URL || 'https://base-rpc.publicnode.com' }}
+        run: forge test --fork-url "$BASE_RPC_URL" --fork-block-number 58750000 -vvv
         id: test

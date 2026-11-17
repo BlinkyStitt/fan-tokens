@@ -126,7 +126,9 @@ contract FanTokenFactory is ReentrancyGuardTransient {
             return;
         }
 
-        (PoolKey memory poolKey, /*PoolId poolId*/ ) = UNISWAP_V4_ERC4626_HOOK.initializePool(vault);
+        (
+            PoolKey memory poolKey, /*PoolId poolId*/
+        ) = UNISWAP_V4_ERC4626_HOOK.initializePool(vault);
 
         _deployedUniswapV4Pools[vault] = poolKey;
     }
