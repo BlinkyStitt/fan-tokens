@@ -1205,7 +1205,7 @@ contract FanTokenTest is Test {
 
         // Deal assets and distribute
         (IERC4626 asset, uint256 sponsorAssets) = _dealAsset(depositAmount, sponsor);
-        ( /*IERC4626 asset*/ , uint256 aliceAssets) = _dealAsset(depositAmount, alice);
+        (/*IERC4626 asset*/, uint256 aliceAssets) = _dealAsset(depositAmount, alice);
 
         assertEq(sponsorAssets, aliceAssets, "sponsor and alice should have the same starting balances");
 

@@ -152,10 +152,7 @@ interface PrizePool {
         external
         view
         returns (uint256);
-    function getDonatedBetween(uint24 _startDrawIdInclusive, uint24 _endDrawIdInclusive)
-        external
-        view
-        returns (uint256);
+    function getDonatedBetween(uint24 _startDrawIdInclusive, uint24 _endDrawIdInclusive) external view returns (uint256);
     function getDrawId(uint256 _timestamp) external view returns (uint24);
     function getDrawIdToAward() external view returns (uint24);
     function getLastAwardedDrawId() external view returns (uint24);
@@ -205,10 +202,7 @@ interface PrizePool {
     function tierShares() external view returns (uint8);
     function totalWithdrawn() external view returns (uint256);
     function twabController() external view returns (address);
-    function wasClaimed(address _vault, address _winner, uint8 _tier, uint32 _prizeIndex)
-        external
-        view
-        returns (bool);
+    function wasClaimed(address _vault, address _winner, uint8 _tier, uint32 _prizeIndex) external view returns (bool);
     function wasClaimed(address _vault, address _winner, uint24 _drawId, uint8 _tier, uint32 _prizeIndex)
         external
         view

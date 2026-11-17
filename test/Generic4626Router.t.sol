@@ -265,7 +265,7 @@ contract Generic4626RouterTest is Test {
         assertLt(finalFanTokens, initialFanTokens, "Should have spent fan tokens");
         assertGt(finalWETH, initialWETH, "Should have received WETH");
 
-        
+
     }
     */
 
@@ -280,7 +280,7 @@ contract Generic4626RouterTest is Test {
         fanToken.approve(address(PERMIT2), type(uint256).max);
         PERMIT2.approve(address(fanToken), address(UNIVERSAL_ROUTER), type(uint160).max, type(uint48).max);
 
-        // Build the pool key for Fan Token <-> Prize Vault pool  
+        // Build the pool key for Fan Token <-> Prize Vault pool
         PoolKey memory poolKey = _buildPoolKey(address(fanToken));
 
         // Encode V4 swap command
@@ -298,14 +298,14 @@ contract Generic4626RouterTest is Test {
 
         // Prepare parameters for each action
         bytes[] memory params = new bytes[](3);
-        
-        // Action 1: SETTLE - settle fan tokens into the pool manager  
+
+        // Action 1: SETTLE - settle fan tokens into the pool manager
         params[0] = abi.encode(
             address(fanToken),      // currency address
             uint256(TRADE_AMOUNT),  // amount to settle
             true                    // payerIsUser - user pays via Permit2
         );
-        
+
         // Action 2: SWAP_EXACT_IN_SINGLE parameters
         params[1] = abi.encode(
             IV4Router.ExactInputSingleParams({
@@ -316,10 +316,10 @@ contract Generic4626RouterTest is Test {
                 hookData: bytes("")
             })
         );
-        
+
         // Action 3: TAKE_ALL - take all output tokens to user
         params[2] = abi.encode(
-            Currency.unwrap(zeroForOne ? poolKey.currency0 : poolKey.currency1),  // currency address 
+            Currency.unwrap(zeroForOne ? poolKey.currency0 : poolKey.currency1),  // currency address
             uint256(type(uint256).max)  // amount (max = take all)
         );
 
