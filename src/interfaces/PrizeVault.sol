@@ -119,9 +119,7 @@ interface PrizeVault {
     function previewRedeem(uint256 _shares) external view returns (uint256);
     function previewWithdraw(uint256 _assets) external view returns (uint256);
     function prizePool() external view returns (address);
-    function redeem(uint256 _shares, address _receiver, address _owner, uint256 _minAssets)
-        external
-        returns (uint256);
+    function redeem(uint256 _shares, address _receiver, address _owner, uint256 _minAssets) external returns (uint256);
     function redeem(uint256 _shares, address _receiver, address _owner) external returns (uint256);
     function renounceOwnership() external;
     function setClaimer(address _claimer) external;
@@ -145,9 +143,7 @@ interface PrizeVault {
         returns (bytes memory);
     function twabController() external view returns (address);
     function verifyTokensIn(address _tokenIn, uint256 _amountIn, bytes memory) external;
-    function withdraw(uint256 _assets, address _receiver, address _owner, uint256 _maxShares)
-        external
-        returns (uint256);
+    function withdraw(uint256 _assets, address _receiver, address _owner, uint256 _maxShares) external returns (uint256);
     function withdraw(uint256 _assets, address _receiver, address _owner) external returns (uint256);
     function yieldBuffer() external view returns (uint256);
     function yieldFeeBalance() external view returns (uint256);
