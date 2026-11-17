@@ -24,10 +24,7 @@ interface IAuction {
     function forceKick(address _from) external;
     function getAllEnabledAuctions() external view returns (address[] memory);
     function getAmountNeeded(address _from) external view returns (uint256);
-    function getAmountNeeded(address _from, uint256 _amountToTake, uint256 _timestamp)
-        external
-        view
-        returns (uint256);
+    function getAmountNeeded(address _from, uint256 _amountToTake, uint256 _timestamp) external view returns (uint256);
     function getAmountNeeded(address _from, uint256 _amountToTake) external view returns (uint256);
     function governance() external view returns (address);
     function initialize(address _want, address _receiver, address _governance, uint256 _startingPrice) external;

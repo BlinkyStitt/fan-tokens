@@ -64,10 +64,7 @@ interface PrizePoolTwabRewards {
     function claimTwabRewards(address _twabRewards, address _user, uint256 _promotionId, uint8[] memory _epochIds)
         external
         returns (uint256);
-    function claimedEpochs(uint256 promotionId, address vault, address user)
-        external
-        view
-        returns (bytes32 claimMask);
+    function claimedEpochs(uint256 promotionId, address vault, address user) external view returns (bytes32 claimMask);
     function createPromotion(
         address _token,
         uint40 _startTimestamp,
