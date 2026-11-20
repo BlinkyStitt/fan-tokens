@@ -31,7 +31,7 @@ A **tipping and gaming token** for social interactions, particularly on platform
 
 **🏗️ Technical Architecture**
 - Built as ERC4626 vaults on top of Pool Together vaults
-- Deployed to the Base network, but will work on any network that has pool together.
+- Deployed to Base. New deployments require a network that supports the Osaka EVM and has PoolTogether.
 - Using Solidity with the Foundry framework
 - FanTokenFactory deploys FanToken contracts
 - Integration with Yearn's dutch auctions for yield harvesting
@@ -196,6 +196,10 @@ Anvil will be configured to use chain id 31337. It will run at <http://127.0.0.1
 
 
 ### Deploy on a Live Network
+
+Solar 0.3.0 is experimental. Its maintainers do not recommend deploying its bytecode
+to production. A compiler or target change can change CREATE2 addresses; revalidate
+creation-code hashes, salts, and expected addresses before any broadcast.
 
 First, set up an account:
 
