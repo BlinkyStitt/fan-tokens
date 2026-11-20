@@ -12,7 +12,6 @@ import {Currency, CurrencyLibrary} from "@uniswap/v4-core/src/types/Currency.sol
 import {IHooks} from "@uniswap/v4-core/src/interfaces/IHooks.sol";
 import {IUniversalRouter} from "@uniswap/universal-router/contracts/interfaces/IUniversalRouter.sol";
 import {Commands} from "@uniswap/universal-router/contracts/libraries/Commands.sol";
-import {IV4Router} from "@uniswap/v4-periphery/src/interfaces/IV4Router.sol";
 import {Actions} from "@uniswap/v4-periphery/src/libraries/Actions.sol";
 import {IPermit2} from "@uniswap/permit2/src/interfaces/IPermit2.sol";
 // import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
@@ -31,6 +30,15 @@ contract Generic4626RouterTest is Test {
     // using StateLibrary for IPoolManager;
     using PoolIdLibrary for PoolKey;
     using SafeCast for uint256;
+
+    // The deployed Base Universal Router v2.0 uses this ABI, without minHopPriceX36.
+    struct ExactInputSingleParamsV2 {
+        PoolKey poolKey;
+        bool zeroForOne;
+        uint128 amountIn;
+        uint128 amountOutMinimum;
+        bytes hookData;
+    }
 
     // Core contracts
     IWETH9 constant WETH = IWETH9(payable(0x4200000000000000000000000000000000000006));
@@ -187,7 +195,7 @@ contract Generic4626RouterTest is Test {
             true // payerIsUser (TODO: what is this?) if false, it uses the pool manager. if true, it uses msg.sender
         );
         params[1] = abi.encode(
-            IV4Router.ExactInputSingleParams({
+            ExactInputSingleParamsV2({
                 poolKey: fanTokenPoolKey,
                 zeroForOne: zeroForOne,
                 amountIn: TRADE_AMOUNT.toUint128(),
@@ -308,7 +316,7 @@ contract Generic4626RouterTest is Test {
 
         // Action 2: SWAP_EXACT_IN_SINGLE parameters
         params[1] = abi.encode(
-            IV4Router.ExactInputSingleParams({
+            ExactInputSingleParamsV2({
                 poolKey: poolKey,
                 zeroForOne: zeroForOne,
                 amountIn: uint128(TRADE_AMOUNT),
