@@ -255,7 +255,7 @@ contract FanToken is AuctionSwapper, ERC4626, Ownable2Step, ReentrancyGuardTrans
     /**
      * @dev See {IERC4626-deposit} with non reentrancy because I'm paranoid.
      */
-    function deposit(uint256 assets, address receiver) public override nonReentrant returns (uint256) {
+    function deposit(uint256 assets, address receiver) public payable override nonReentrant returns (uint256) {
         return super.deposit(assets, receiver);
     }
 
