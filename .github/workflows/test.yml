@@ -15,7 +15,7 @@ concurrency:
 jobs:
   check:
     name: Foundry project
-    runs-on: ubuntu-latest
+    runs-on: ski-kvm-fan-tokens
     steps:
       - uses: actions/checkout@v7
         with:
